@@ -1,0 +1,12 @@
+<section class="section">
+    <ul class="level">
+        ${subRedditsData.map(subReddits => `
+            <li style="width: 100%">
+                <a href="/subReddits/${subReddits.id}" class="is-pulled-left">
+                    
+                    ${subReddits.name}
+                </a>
+            </li>
+        `).join('')}
+    </ul>
+</section>
