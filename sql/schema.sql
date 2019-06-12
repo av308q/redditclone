@@ -13,7 +13,7 @@ create table subreddits (
   name varchar(100),
 ); 
 
-create table chat (
+create table comments (
   id serial primary key,
   comments text,
   subreddit_id integer references subreddits(id),
