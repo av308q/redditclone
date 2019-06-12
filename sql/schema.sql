@@ -17,5 +17,13 @@ create table chat (
   id serial primary key,
   comments text,
   subreddit_id integer references subreddits(id),
-  user_id integer references users(id)
+  user_id integer references users(id),
+  posts_id integer references posts(id)
 );
+
+create table posts (
+  id serial primary key,
+  posts varchar(200),
+  content varchar(500),
+  user_id integer references user(id)
+)
