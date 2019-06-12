@@ -8,7 +8,7 @@ exports.signup_get = (req, res) => {
             is_logged_in: req.session.is_logged_in,
         },
         partials:{
-            partial:'partial-signup'
+            partial:'partial.signup'
         }
     });
 };
@@ -20,7 +20,7 @@ exports.login_get = (req, res) => {
             is_logged_in: req.session.is_logged_in
         },
         partials:{
-            partial:'partial-login'
+            partial:'partial.login'
         }
     });
 };
