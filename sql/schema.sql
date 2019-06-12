@@ -17,6 +17,7 @@ create table posts (
   id serial primary key,
   posts varchar(200),
   content varchar(500),
+  subreddit_id integer references subbreddits(id),
   user_id integer references users(id)
 );
 
