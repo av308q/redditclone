@@ -5,14 +5,14 @@ exports.getAll_get = async (req, res) => {
     console.log(allSubReddits);
     res.render('template', { 
         locals: {
-            title: "Books in Atlanta",
+            title: "SubReddits",
             is_logged_in: req.session.is_logged_in,
             subRedditList: allSubReddits,
             first_name: req.session.first_name,
             user_id: req.session.user_id
         },
         partials:{
-            partial: 'partial-subReddits'
+            partial: 'partial.index'
         }
     });
 };
@@ -36,7 +36,7 @@ exports.getOne_get = async (req, res) => {
             chatData: subRedditChats
         },
         partials:{
-            partial: 'partial-one-subReddit'
+            partial: 'partial.subReddit'
         }
     });
 };
