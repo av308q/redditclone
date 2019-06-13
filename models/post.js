@@ -8,7 +8,7 @@ class Post{
         this.user_id = user_id;
     }
 
-    static async getAll(subReddit_id){
+    static async getAllPosts(subReddit_id){
         try{
             const response = await db.any(`select * from posts where subreddit_id =${subReddit_id}`);
             return response;
@@ -17,7 +17,7 @@ class Post{
         }
     };
 
-    static async getOne(post_id){
+    static async getOnePost(post_id){
         try{
             const response = await db.one(`select * from posts where id=${post_id}`);
             const postInstance = new Post(response.id, response.posts, response.content, response.subreddit_id, response.user_id);
@@ -34,7 +34,7 @@ class Post{
             select * from 
                 comments 
             where 
-                posts_id=$1 and subreddit_id=$2`, [this.subreddit_id, this.post_id]
+                subreddit_id=$1 and posts_id=$2`, [this.subreddit_id, this.post_id]
             );
             return response;
 
