@@ -41,11 +41,11 @@ exports.getOne_get = async (req, res) => {
     });
 };
 
-exports.addChat_post = (req, res) => {
-    console.log("review post", req.body);
-    const { content, subReddit_id, user_id } = req.body;
+exports.addPost_post = (req, res) => {
+    console.log("posting a post", req.body);
+    const { posts, content, subreddit_id, user_id} = req.body;
 
-    Book.addChat( content, subReddit_id, user_id).then(response => {
+    Book.addChat( posts, content, subreddit_id, user_id).then(response => {
         console.log(response)
         req.session.first_name = first_name;
         console.log("first name is",first_name);
