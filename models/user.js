@@ -48,8 +48,8 @@ class User{
         } catch(err){
             return err.message;
         }
-    }
+    };
 
-}
+};
 
 module.exports = User;
