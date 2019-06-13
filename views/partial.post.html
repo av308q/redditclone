@@ -1,34 +1,31 @@
 <section class="section">
-    <div class="clearfix">
-        <p>${subReddits.name}</p>
-        <figure class="image">
-            
-        </figure>
-    </div>
-    <div class="clearfix">
-        <ul style="margin-top: 16px;">
-            ${reviewData.map(review => `
-                <li>
-                    <span class="rating" style="display: inline-block; width: 100%;">${review.score} Stars</span>
-                    <p>${review.content}</p>
-                </li>
-            `).join('')}
-        </ul>
-    </div>
-    ${!!is_logged_in ? `
-        <form class="form clearfix">
-            <p>Add a new review:</p>
-            <div class="field">
-                <div class="control">
-                    <textarea class="textarea is-primary" placeholder="Leave a review" rows="4" cols="50"></textarea>
-                </div>
-            </div>
-            <div class="field">
-                
-            </div>
-            <input type="hidden" name="user_id" value=${user_id} />
-            <input type="hidden" name="subReddits_id" value=${subReddits_id} />
-            <button class="button is-primary" type="submit">Submit Review</button>
-        </form>
-        ` : `<p>You are NOT logged in</p>`}
-</section>
+    
+ </section>
+ 
+ <section>
+        <table>
+            <thead>
+                <tr>
+                    <td>User ID:</td>
+                    <td>Comments:</td>
+                </tr>
+            </thead>
+            ${commentData.map(comment =>
+                `<tr>
+                    <td>${comment.user_id}</td>
+                    <td>${comment.content}</td>
+                </tr>`
+            ).join('')}
+        </table>
+    </section>
+    <section>
+    <form action="/books/reviews" method ="POST">
+ 
+        <textarea name="content">Comments</textarea>
+ 
+        
+        <input type="hidden" name="post_id" value="${user_id}" />
+        <input type="hidden" name="post_id" value="${book_id}" />
+        <button type="submit" class="button is-primary">Submit</button>
+    </form>
+ </section>
