@@ -25,6 +25,30 @@ class subReddit{
         } catch(err){
             return err.message;
         }
+    };
+
+    static async getAllPosts(){
+        try{
+            const response = await db.any(`select * from posts where subreddit_id=${subReddit_id}`);
+            return response;
+        }catch(err){
+            return err.message
+        }
+    };
+
+    static async addPost(posts, content, subreddit_id, user_id){
+        try{
+            const response = await db.one(`
+            insert into posts
+            (posts, content, subreddit_id, user_id)
+            values
+                ($1, $2, $3, $4)
+            returning id
+            `, [posts, content, subreddit_id, user_id]);
+            return response;
+        } catch(err){
+            return err.message;
+        }
     }
 };
 
