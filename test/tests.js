@@ -11,14 +11,14 @@ const Post = require('../models/post');
 describe('Users model tests', () => {
     it('should be a valid user', async () =>{
         const userInstance = new User(null,null,null, 'mcderp@derps.com',null);
-        const theUser = await userInstance.getUserByEmail();
+        const theUser = await userInstance.getUserByUserName();
         console.log('the user is', theUser);
         expect(theUser).to.be.an('object');
     });
 
     it('should NOT be undefined', async () =>{
-        const userInstance = new User(null, null, null, 'mcderp@derps.com', null);
-        const theUser = await userInstance.getUserByEmail();
+        const userInstance = new User(null, null, null, 'mcderp', null);
+        const theUser = await userInstance.getUserByUserName();
         expect(theUser.id).to.not.be.an('undefined');
     });
 
@@ -51,7 +51,7 @@ describe('SubReddit models tests', () =>{
     });
 });
 
-describe('Post models tests', () =>{
+describe('Post models tests', () => {
 
     it('should get a single post by ID', async() =>{
         const OnePost = await Post.getOnePost(1);
