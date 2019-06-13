@@ -15,7 +15,7 @@ class User{
         try{
         const response = await db.one(`
         insert into users
-        (first_name, last_name, email, password)
+        (first_name, last_name, user_name, password)
         values
             ($1, $2, $3, $4)
         returning id
@@ -27,12 +27,12 @@ class User{
         }
     }
 
-    async getUserByEmail(){
+    async getUserByUserName(){
         try{
             const userData = await db.one(`
                 select id, first_name, last_name, password
                     from users
-                where email = $1`,[this.user_name]);
+                where user_name = $1`,[this.user_name]);
             return userData;
         } catch(err){
             return err.message;
