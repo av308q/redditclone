@@ -21,8 +21,8 @@ exports.getOne_get = async (req, res) => {
     const subReddit_id= req.params.subReddit_id;
     const oneSubReddit = await SubReddit.getOne(subReddit_id);
     const subRedditInstance = new SubReddit(subReddit_id, null);
-    const subRedditChats = await subRedditInstance.getAllChats();
-    console.log(subRedditChats);
+    const subRedditPosts = await subRedditInstance.getAllPosts();
+    console.log(subRedditPosts);
 
     console.log(oneSubReddit);
     res.render('template', { 
@@ -33,7 +33,7 @@ exports.getOne_get = async (req, res) => {
             first_name: req.session.first_name,
             user_id: req.session.user_id,
             subReddit_id: req.params.subReddit_id,
-            chatData: subRedditChats
+            postData: subRedditPosts
         },
         partials:{
             partial: 'partial.subReddit'
@@ -55,5 +55,6 @@ exports.addChat_post = (req, res) => {
         console.log("SubReddit ID is", SubReddit_id)
         res.redirect(`/subReddits`);
     });
+
 };
 
