@@ -43,9 +43,9 @@ describe('SubReddit models tests', () =>{
         theSubReddit.should.be.an.instanceOf(SubReddit);
     });
 
-    it('should get all chats with a particular topic ID', async() =>{
-        const allChats = await SubReddit.getAllChats();
-        console.log(allChats);
-        expect(allChats).to.not.be.an('undefined');
+    it('should get all posts with a particular subreddit ID', async() =>{
+        const allPosts = await SubReddit.getAllPosts();
+        console.log(allPosts);
+        expect(allPosts).to.not.be.an('undefined');
     });
 });
