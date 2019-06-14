@@ -12,7 +12,7 @@ exports.getAll_get = async (req, res) => {
             user_id: req.session.user_id
         },
         partials:{
-            partial: 'partial.index'
+            partial: 'partial-index'
         }
     });
 };
@@ -36,7 +36,7 @@ exports.getOne_get = async (req, res) => {
             commentData: PostComments
         },
         partials:{
-            partial: 'partial.subReddit'
+            partial: 'partial-subReddit'
         }
     });
 };

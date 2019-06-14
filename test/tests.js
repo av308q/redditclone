@@ -10,7 +10,7 @@ const Post = require('../models/post');
 
 describe('Users model tests', () => {
     it('should be a valid user', async () =>{
-        const userInstance = new User(null,null,null, 'mcderp@derps.com',null);
+        const userInstance = new User(null,null,null, 'mcderp',null);
         const theUser = await userInstance.getUserByUserName();
         console.log('the user is', theUser);
         expect(theUser).to.be.an('object');

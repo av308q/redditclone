@@ -7,17 +7,16 @@
     </div>
     <div class="clearfix">
         <ul style="margin-top: 16px;">
-            ${reviewData.map(review => `
+            ${postData.map(comment => `
                 <li>
-                    <span class="rating" style="display: inline-block; width: 100%;">${review.score} Stars</span>
-                    <p>${review.content}</p>
+                  <p>${comment.content}</p>
                 </li>
             `).join('')}
         </ul>
     </div>
     ${!!is_logged_in ? `
         <form class="form clearfix">
-            <p>Add a new review:</p>
+            <p>Add a new comment:</p>
             <div class="field">
                 <div class="control">
                     <textarea class="textarea is-primary" placeholder="Leave a review" rows="4" cols="50"></textarea>
