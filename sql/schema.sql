@@ -1,4 +1,5 @@
-create database chat_box
+
+
 create table users (
   id serial primary key,
   first_name varchar(200),
@@ -15,8 +16,8 @@ create table subreddits (
 
 create table posts (
   id serial primary key,
-  posts varchar(200),
-  content varchar(500),
+  posts varchar(1000),
+  content varchar(2000),
   subreddit_id integer references subbreddits(id),
   user_id integer references users(id)
 );
