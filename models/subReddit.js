@@ -25,39 +25,31 @@ class subReddit{
         } catch(err){
             return err.message;
         }
-    }
+    };
 
-    static async getAllChats(){
+    static async getAllPosts(){
         try{
-            const response = await db.any(`
-            select * from 
-                chats 
-            where 
-                subReddit_id=$1`, [this.id]
-            );
+            const response = await db.any(`select * from posts where subreddit_id=${subReddit_id}`);
             return response;
-
         }catch(err){
             return err.message
         }
-    }
+    };
 
-    static async addChat(content, subReddit_id, user_id) {
+    static async addPost(posts, content, subreddit_id, user_id){
         try{
             const response = await db.one(`
-            insert into chats
-            (content, subReddit_id, user_id)
+            insert into posts
+            (posts, content, subreddit_id, user_id)
             values
-                ($1, $2, $3)
+                ($1, $2, $3, $4)
             returning id
-            `, [content, subReddit_id, user_id]);
+            `, [posts, content, subreddit_id, user_id]);
             return response;
-    
         } catch(err){
             return err.message;
         }
-        }
-
-}
+    }
+};
 
 module.exports = subReddit;

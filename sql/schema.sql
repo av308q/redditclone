@@ -1,12 +1,11 @@
 
-
 create table users (
   id serial primary key,
   first_name varchar(200),
   last_name varchar(200),
   user_name varchar(200),
   password varchar(500),
-  subbreddits varchar(200)
+  subreddits varchar(200)
 );
 
 create table subreddits (

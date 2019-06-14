@@ -6,18 +6,19 @@ chai.use(chai_as_promised).should();
 
 const User = require('../models/user');
 const SubReddit = require('../models/subReddit');
+const Post = require('../models/post');
 
 describe('Users model tests', () => {
     it('should be a valid user', async () =>{
         const userInstance = new User(null,null,null, 'mcderp@derps.com',null);
-        const theUser = await userInstance.getUserByEmail();
+        const theUser = await userInstance.getUserByUserName();
         console.log('the user is', theUser);
         expect(theUser).to.be.an('object');
     });
 
     it('should NOT be undefined', async () =>{
-        const userInstance = new User(null, null, null, 'mcderp@derps.com', null);
-        const theUser = await userInstance.getUserByEmail();
+        const userInstance = new User(null, null, null, 'mcderp', null);
+        const theUser = await userInstance.getUserByUserName();
         expect(theUser.id).to.not.be.an('undefined');
     });
 
@@ -43,9 +44,24 @@ describe('SubReddit models tests', () =>{
         theSubReddit.should.be.an.instanceOf(SubReddit);
     });
 
-    it('should get all chats with a particular topic ID', async() =>{
-        const allChats = await SubReddit.getAllChats();
-        console.log(allChats);
-        expect(allChats).to.not.be.an('undefined');
+    it('should get all posts with a particular subreddit ID', async() =>{
+        const allPosts = await SubReddit.getAllPosts();
+        console.log(allPosts);
+        expect(allPosts).to.not.be.an('undefined');
     });
 });
+
+describe('Post models tests', () => {
+
+    it('should get a single post by ID', async() =>{
+        const OnePost = await Post.getOnePost(1);
+        console.log('The post is', OnePost);
+        OnePost.should.be.an.instanceOf(Post);
+    });
+
+    it('should get all the comments for a single post under a particular subreddit'), async() =>{
+        const allComments = await Post.getAllComments();
+        console.log('The comments are', allComments);
+        expect(allComments).to.not.be.an('undefined');
+    }
+})

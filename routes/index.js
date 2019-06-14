@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
       userName: req.session.first_name
     },
     partials: {
-      partial: 'partial-index'
+      partial: 'partial.index'
     }
   });
 });
