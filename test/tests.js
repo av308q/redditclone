@@ -10,14 +10,14 @@ const Post = require('../models/post');
 
 describe('Users model tests', () => {
     it('should be a valid user', async () =>{
-        const userInstance = new User(null,null,null, 'mcderp',null);
+        const userInstance = new User(null, null, null, 'King_of_Derps',null, null);
         const theUser = await userInstance.getUserByUserName();
         console.log('the user is', theUser);
         expect(theUser).to.be.an('object');
     });
 
     it('should NOT be undefined', async () =>{
-        const userInstance = new User(null, null, null, 'mcderp', null);
+        const userInstance = new User(null, null, null, 'King_of_Derps', null, null);
         const theUser = await userInstance.getUserByUserName();
         expect(theUser.id).to.not.be.an('undefined');
     });
@@ -52,16 +52,15 @@ describe('SubReddit models tests', () =>{
 });
 
 describe('Post models tests', () => {
-
     it('should get a single post by ID', async() =>{
         const OnePost = await Post.getOnePost(1);
         console.log('The post is', OnePost);
         OnePost.should.be.an.instanceOf(Post);
     });
 
-    it('should get all the comments for a single post under a particular subreddit'), async() =>{
-        const allComments = await Post.getAllComments();
+    it('should get all the comments for a single post under a particular subreddit', async() =>{
+        const allComments = await Post.getAllComments(1,1);
         console.log('The comments are', allComments);
         expect(allComments).to.not.be.an('undefined');
-    }
-})
+    });
+});

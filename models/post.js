@@ -28,13 +28,13 @@ class Post{
         }
     };
 
-    static async getAllComments(){
+    static async getAllComments(subreddit_id, post_id){
         try{
             const response = await db.any(`
             select * from 
                 comments 
             where 
-                subreddit_id=$1 and posts_id=$2`, [this.subreddit_id, this.post_id]
+                subreddit_id=$1 and posts_id=$2`, [subreddit_id, post_id]
             );
             return response;
 
