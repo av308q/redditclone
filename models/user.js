@@ -5,10 +5,10 @@ class User{
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
-        this.userName = user_name;
+        this.user_name = user_name;
         this.password = password;
         this.subReddits = subReddits;
-    }
+    };
 
 
     async save() {
