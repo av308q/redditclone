@@ -5,7 +5,7 @@ create table users (
   last_name varchar(200),
   user_name varchar(200),
   password varchar(500),
-  subreddits varchar(200)
+  subreddit_id integer references subreddits(id)
 );
 
 create table subreddits (
@@ -17,7 +17,7 @@ create table posts (
   id serial primary key,
   posts varchar(1000),
   content varchar(2000),
-  subreddit_id integer references subbreddits(id),
+  subreddit_id integer references subreddits(id),
   user_id integer references users(id)
 );
 
