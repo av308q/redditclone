@@ -17,11 +17,8 @@ class subReddit{
 
     static async getOne(subReddit_id){
         try{
-            
-            const response = await db.one(`select * from subReddits where id=${subReddit_id}`);
-            const subRedditInstance = new subReddit(response.id, response.name);
-        
-            return subRedditInstance;
+            const response = await db.any(`select * from posts where id=${subReddit_id}`);
+            return response;
         } catch(err){
             return err.message;
         }

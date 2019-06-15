@@ -21,9 +21,8 @@ exports.getOne_get = async (req, res) => {
     const subReddit_id= req.params.subReddit_id;
     const oneSubReddit = await SubReddit.getOne(subReddit_id);
     const subRedditInstance = new SubReddit(subReddit_id, null);
-    const subRedditPosts = await subRedditInstance.getAllPosts();
+    const subRedditPosts = await subRedditInstance.getAllPosts(subReddit_id);
     console.log(subRedditPosts);
-
     console.log(oneSubReddit);
     res.render('template', { 
         locals: {
