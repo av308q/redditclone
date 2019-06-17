@@ -1,23 +1,14 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express'),
+  router = express.Router();
 
 const  SubRedditController = require('../controllers/subReddits');
 
+/* GET home page. */
 router.get('/', SubRedditController.getAll_get);
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('template', { 
-    locals: {
-      title: 'Home Page',
-      is_logged_in: req.session.is_logged_in,
-      userName: req.session.first_name,
-      subRedditList: allSubReddits
-    },
-    partials: {
-      partial: 'partial-index'
-    }
-  });
-});
+router.get('/:subReddit_id?', SubRedditController.getOne_get);
+
+router.post('/', SubRedditController.addPost_post);
+
 
 module.exports = router;

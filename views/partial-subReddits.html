@@ -1,25 +1,27 @@
 <section class="section">
     <div class="clearfix">
-        <p>${subReddits.name}</p>
+        <p>${oneSubRedditList.name}</p>
         <figure class="image">
             
         </figure>
     </div>
     <div class="clearfix">
         <ul style="margin-top: 16px;">
-            ${postData.map(comment => `
+            ${postData.map(post => `
                 <li>
-                    <p>${comment.content}</p>
+                    <p>${post.user_id}</p>
+                    <p>${post.posts}</p>
+                    <p>${post.content}</p>
                 </li>
             `).join('')}
         </ul>
     </div>
     ${!!is_logged_in ? `
         <form class="form clearfix">
-            <p>Add a new comment:</p>
+            <p>Add a new post:</p>
             <div class="field">
                 <div class="control">
-                    <textarea class="textarea is-primary" placeholder="Leave a review" rows="4" cols="50"></textarea>
+                    <textarea class="textarea is-primary" placeholder="make a new post" rows="4" cols="50"></textarea>
                 </div>
             </div>
             <div class="field">

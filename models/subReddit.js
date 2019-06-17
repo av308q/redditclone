@@ -17,16 +17,18 @@ class subReddit{
 
     static async getOne(subReddit_id){
         try{
-            const response = await db.any(`select * from posts where id=${subReddit_id}`);
+            const response = await db.one(`select * from subreddits where id=${subReddit_id}`);
+            console.log(response);
             return response;
         } catch(err){
             return err.message;
         }
     };
 
-    static async getAllPosts(){
+    async getAllPosts(){
         try{
-            const response = await db.any(`select * from posts where subreddit_id=${subReddit_id}`);
+            const response = await db.any(`select * from posts where subreddit_id=$1`, [this.id]);
+            console.log(response);
             return response;
         }catch(err){
             return err.message

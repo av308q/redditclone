@@ -21,7 +21,7 @@ exports.getOne_get = async (req, res) => {
     const post_id= req.params.post_id;
     const onePost = await Post.getOne(post_id);
     const PostInstance = new Post(post_id, null, null, null, null);
-    const PostComments = await PostInstance.getAllChats();
+    const PostComments = await PostInstance.getAllComments();
     console.log(PostComments);
 
     console.log(onePost);
