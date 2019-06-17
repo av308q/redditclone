@@ -4,8 +4,7 @@ create table users (
   first_name varchar(200),
   last_name varchar(200),
   user_name varchar(200),
-  password varchar(500),
-  subreddit_id integer references subreddits(id)
+  password varchar(500)
 );
 
 create table subreddits (
