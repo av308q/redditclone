@@ -23,11 +23,10 @@ exports.getOne_get = async (req, res) => {
     const subRedditInstance = new SubReddit(subReddit_id, null);
     const subRedditPosts = await subRedditInstance.getAllPosts();
     console.log(subRedditPosts);
-
-    console.log(oneSubReddit);
+    console.log("this one subreddit is",oneSubReddit);
     res.render('template', { 
         locals: {
-            title: "",
+            title: "Subreddit",
             is_logged_in: req.session.is_logged_in,
             oneSubRedditList: oneSubReddit,
             first_name: req.session.first_name,
@@ -36,7 +35,7 @@ exports.getOne_get = async (req, res) => {
             postData: subRedditPosts
         },
         partials:{
-            partial: 'partial-subReddit'
+            partial: 'partial-subReddits'
         }
     });
 };
@@ -45,7 +44,7 @@ exports.addPost_post = (req, res) => {
     console.log("posting a post", req.body);
     const { posts, content, subreddit_id, user_id} = req.body;
 
-    Book.addChat( posts, content, subreddit_id, user_id).then(response => {
+    SubReddit.addPost( posts, content, subreddit_id, user_id).then(response => {
         console.log(response)
         req.session.first_name = first_name;
         console.log("first name is",first_name);
@@ -53,7 +52,7 @@ exports.addPost_post = (req, res) => {
         console.log("User ID is", user_id)
         req.params.subReddit_id = subReddit_id;
         console.log("SubReddit ID is", SubReddit_id)
-        res.redirect(`/subReddits`);
+        res.redirect(`/`);
     });
 
 };

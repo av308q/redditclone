@@ -1,21 +1,24 @@
 <section class="section">
     <div class="clearfix">
-        <p>${subReddits.name}</p>
+        <p>${oneSubRedditList.name}</p>
         <figure class="image">
             
         </figure>
     </div>
     <div class="clearfix">
         <ul style="margin-top: 16px;">
-            ${postData.map(comment => `
+            ${postData.map(post => `
                 <li>
-                  <p>${comment.content}</p>
+                    <p>${post.user_id}</p>
+                    <p>${post.posts}</p>
+                    <p>${post.content}</p>
                 </li>
             `).join('')}
         </ul>
     </div>
     ${!!is_logged_in ? `
         <form class="form clearfix">
+<<<<<<< HEAD
                 <p>Add a new comment:</p>
                 <div class="field">
                     <div class="control">
@@ -24,9 +27,15 @@
                 </div>
                 <div class="field">
                     
+=======
+            <p>Add a new post:</p>
+            <div class="field">
+                <div class="control">
+                    <textarea class="textarea is-primary" placeholder="make a new post" rows="4" cols="50"></textarea>
+>>>>>>> d1f4f452f08d8a89b2ef9a6699bcf875d3bf232c
                 </div>
             <input type="hidden" name="user_id" value=${user_id} />
-            <input type="hidden" name="subReddits_id" value=${subReddits_id} />
+            <input type="hidden" name="subReddits_id" value=${subReddit_id} />
             <button class="button is-primary" type="submit">Submit Review</button>
         </form>
         ` : `<p>You are NOT logged in</p>`}

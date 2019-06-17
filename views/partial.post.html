@@ -1,0 +1,31 @@
+<section class="section">
+    
+ </section>
+ 
+ <section>
+        <table>
+            <thead>
+                <tr>
+                    <td>User ID:</td>
+                    <td>Comments:</td>
+                </tr>
+            </thead>
+            ${commentData.map(comment =>
+                `<tr>
+                    <td>${comment.user_id}</td>
+                    <td>${comment.content}</td>
+                </tr>`
+            ).join('')}
+        </table>
+    </section>
+    <section>
+    <form action="/books/reviews" method ="POST">
+
+        <textarea name="content">Comments</textarea>
+
+        
+        <input type="hidden" name="post_id" value="${user_id}" />
+        <input type="hidden" name="post_id" value="${book_id}" />
+        <button type="submit" class="button is-primary">Submit</button>
+    </form>
+ </section>
