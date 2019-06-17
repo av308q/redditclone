@@ -31,34 +31,35 @@ describe('Users model tests', () => {
 
 
 describe('SubReddit models tests', () =>{
-    it('should get a list of all subReddits', async() =>{
+    it('should get a list of all subReddits', async() => {
         const allSubReddits = await SubReddit.getAll();
         console.log(allSubReddits);
         expect(allSubReddits).to.not.be.an('undefined');
     });
 
-    it('should get a single SubReddit by ID', async() =>{
+    it('should get a single SubReddit by ID', async() => {
         // the test should call your getOne() function, and validate if the response is an instance...
         const theSubReddit = await SubReddit.getOne(1);
         console.log('the subReddit is', theSubReddit);
         theSubReddit.should.be.an.instanceOf(SubReddit);
     });
 
-    it('should get all posts with a particular subreddit ID', async() =>{
+    it('should get all posts with a particular subreddit ID', async() => {
         const allPosts = await SubReddit.getAllPosts();
         console.log(allPosts);
         expect(allPosts).to.not.be.an('undefined');
     });
 });
 
+
 describe('Post models tests', () => {
-    it('should get a single post by ID', async() =>{
+    it('should get a single post by ID', async() => {
         const OnePost = await Post.getOnePost(1);
         console.log('The post is', OnePost);
         OnePost.should.be.an.instanceOf(Post);
     });
 
-    it('should get all the comments for a single post under a particular subreddit', async() =>{
+    it('should get all the comments for a single post under a particular subreddit', async() => {
         const allComments = await Post.getAllComments(1,1);
         console.log('The comments are', allComments);
         expect(allComments).to.not.be.an('undefined');
