@@ -7,7 +7,6 @@ class User{
         this.last_name = last_name;
         this.user_name = user_name;
         this.password = password;
-        this.subReddits = subReddits;
     };
 
 
