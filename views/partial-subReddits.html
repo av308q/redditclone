@@ -7,19 +7,22 @@
     </div>
     <div class="clearfix">
         <table style="margin-top: 16px;">
+
             <thead>
-                ${postData.map(post => `
-                <tr>
-                    <td>
-                        ${post.user_id}
-                    </td>
-                    <td>
-                        <a href="/sub/${subReddit_id}/post/${post.id}">${post.posts}</a>
-                        ${post.content}
-                    </td>
-                </tr>
-                `).join('')}
+                <td>User ID:</td>
+                <td>Post:</td>
             </thead>
+            ${postData.map(post => `
+            <tr>
+                <td>
+                    ${post.user_id}
+                </td>
+                <td>
+                    <a href="/sub/${subReddit_id}/post/${post.id}">${post.posts}</a>
+                    ${post.content}
+                </td>
+            </tr>
+            `).join('')}
         </table>
     </div>
     ${!!is_logged_in ? `
