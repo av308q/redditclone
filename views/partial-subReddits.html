@@ -6,15 +6,21 @@
         </figure>
     </div>
     <div class="clearfix">
-        <ul style="margin-top: 16px;">
-            ${postData.map(post => `
-                <li>
-                    <p>${post.user_id}</p>
-                    <p>${post.posts}</p>
-                    <p>${post.content}</p>
-                </li>
-            `).join('')}
-        </ul>
+        <table style="margin-top: 16px;">
+            <thead>
+                ${postData.map(post => `
+                <tr>
+                    <td>
+                        ${post.user_id}
+                    </td>
+                    <td>
+                        <a href="/sub/${subReddit_id}/post/${post.id}">${post.posts}</a>
+                        ${post.content}
+                    </td>
+                </tr>
+                `).join('')}
+            </thead>
+        </table>
     </div>
     ${!!is_logged_in ? `
         <form class="form clearfix">
@@ -29,7 +35,7 @@
             </div>
             <input type="hidden" name="user_id" value=${user_id} />
             <input type="hidden" name="subReddits_id" value=${subReddit_id} />
-            <button class="button is-primary" type="submit">Submit Review</button>
+            <button class="button is-primary" type="submit">Add</button>
         </form>
         ` : `<p>You are NOT logged in</p>`}
 </section>
