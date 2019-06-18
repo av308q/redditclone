@@ -4,8 +4,9 @@ exports.getOnePost_get = async (req, res) => {
     const post_id= req.params.post_id;
     console.log(post_id);
     const onePost = await Post.getOnePost(post_id);
+    const subreddit_id = onePost.subreddit_id;
     const PostInstance = new Post(post_id, null, null, null, null);
-    const PostComments = await PostInstance.getAllComments();
+    const PostComments = await PostInstance.getAllComments(subreddit_id, post_id);
     console.log(PostComments);
     console.log(onePost);
     res.render('template', { 

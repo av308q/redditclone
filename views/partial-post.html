@@ -6,7 +6,15 @@
     
     <table>
         <thead>
-            
+                <tr>
+                    <td>
+                        ${onePostList.user_id}
+                    </td>
+                    <td>
+                        ${onePostList.posts}
+                        ${onePostList.content}
+                    </td>
+                </tr>
         </thead>
     </table>
 
@@ -20,19 +28,28 @@
         ${commentData.map(comment =>
             `<tr>
                 <td>${comment.user_id}</td>
-                <td>${comment.content}</td>
+                <td>${comment.comments}</td>
             </tr>`
         ).join('')}
     </table>
 </section>
 
 <section>
-    <form action="/books/reviews" method ="POST">
-
-        <textarea name="content">Comments</textarea>
-        
-        <input type="hidden" name="post_id" value="${user_id}" />
-        <input type="hidden" name="post_id" value="${post_id}" />
-        <button type="submit" class="button is-primary">Submit</button>
-    </form>
+        ${!!is_logged_in ? `
+            <form class="form clearfix">
+                <p>Add a new post:</p>
+                <div class="field">
+                    <div class="control">
+                        <textarea class="textarea is-primary" placeholder="make a new post" rows="4" cols="50"></textarea>
+                    </div>
+                </div>
+                <div class="field">
+                    
+                </div>
+                <input type="hidden" name="user_id" value=${user_id} />
+                <input type="hidden" name="subReddits_id" value=${subReddit_id} />
+                <input type="hidden" name="post_id" value=${post_id} />
+                <button class="button is-primary" type="submit">Add</button>
+            </form>
+            ` : `<p>You are NOT logged in</p>`}
 </section>
