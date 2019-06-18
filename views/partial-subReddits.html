@@ -7,19 +7,22 @@
     </div>
     <div class="clearfix">
         <table style="margin-top: 16px;">
+
             <thead>
-                ${postData.map(post => `
-                <tr>
-                    <td>
-                        ${post.user_id}
-                    </td>
-                    <td>
-                        <a href="/sub/${subReddit_id}/post/${post.id}">${post.posts}</a>
-                        ${post.content}
-                    </td>
-                </tr>
-                `).join('')}
+                <td>User ID:</td>
+                <td>Post:</td>
             </thead>
+            ${postData.map(post => `
+            <tr>
+                <td>
+                    ${post.user_id}
+                </td>
+                <td>
+                    <a href="/sub/${subReddit_id}/post/${post.id}">${post.posts}</a>
+                    ${post.content}
+                </td>
+            </tr>
+            `).join('')}
         </table>
     </div>
     ${!!is_logged_in ? `
@@ -29,10 +32,6 @@
                 <div class="control">
                     <textarea class="textarea is-primary" placeholder="make a new post" rows="4" cols="50"></textarea>
                 </div>
-            </div>
-            <div class="field">
-                
-            </div>
             <input type="hidden" name="user_id" value=${user_id} />
             <input type="hidden" name="subReddits_id" value=${subReddit_id} />
             <button class="button is-primary" type="submit">Add</button>
