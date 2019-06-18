@@ -4,13 +4,14 @@ class Post{
     constructor(id, posts, content, subreddit_id, user_id){
         this.id = id;
         this.posts = posts;
+        this.content = content
         this.subreddit_id = subreddit_id;
         this.user_id = user_id;
     }
 
-    static async getOnePost(){
+    static async getOnePost(post_id){
         try{
-            const response = await db.one(`select * from posts where id=$1`,[this.id]);
+            const response = await db.one(`select * from posts where id=$1`,[post_id]);
             const postInstance = new Post(response.id, response.posts, response.content, response.subreddit_id, response.user_id);
             console.log(postInstance);
             return postInstance;
@@ -19,7 +20,7 @@ class Post{
         }
     };
 
-    static async getAllComments(){
+    async getAllComments(){
         try{
             const response = await db.any(`
             select * from 
@@ -34,15 +35,15 @@ class Post{
         }
     }
 
-    static async addComment(comments, subReddit_id, user_id, post_id) {
+    static async addComment(comments, subreddit_id, user_id, post_id) {
         try{
             const response = await db.one(`
             insert into comments
-            (comments, subReddit_id, user_id, post_id)
+            (comments, subreddit_id, user_id, post_id)
             values
                 ($1, $2, $3, $4)
             returning id
-            `, [comments, subReddit_id, user_id, post_id]);
+            `, [comments, subreddit_id, user_id, post_id]);
             return response;
     
         } catch(err){
